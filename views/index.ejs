@@ -5,7 +5,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Monsters</title>
   <meta name="author" content="Micheal">
   <meta name="description" content="Creative Project">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,10 +15,34 @@
 
 <body>
 
-  <p>Hello, world!</p>
+  <div class="bar">
+    <h1>Monster Keeper</h1>
+  </div>
+  <div class="content">
+    <div id="app">
+      <h1>Take care of {{ monster.name }}!</h1>
+      <h2>Health:</h2>
+      <div class="healthbar">
+        <span v-for="bar in healthbar"></span>
+      </div>
+      <h2>Hunger:<button class="hunger_button" type="button" @click="feed">Feed!</button></h2>
+      <div class="hungerbar">
+        <span v-for="bar in hungerbar"></span>
+      </div>
+      <p>{{ monster.name }}</p>
+      <br>
+      <br>
+      <div class="poop" v-for="p in poops" v-bind:style="{ top: p.top, left: p.left }" @click="removePoop(p._id)"></div>
+      <h4 v-if="just_pooped">Oh no! Your monster pooped!<br>Click on it to clean it up.</h4>
+      <h4 v-if="is_hungry">Getting hungry . . .</h4>
+      <div :class="[which_image]"></div>
+    </div>
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/monster.js"></script>
 </body>
 
 </html>
